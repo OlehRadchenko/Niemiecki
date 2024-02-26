@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niemiecki</title>
+</head>
+<body>
+    <div id="powtorka">
+        <p id="po_polsku"></p><br>
+        <input type="text" id="niem"><br>
+        <input type="button" value="Los" onclick="losa()"><input type="button" value="Odpowiedz" onclick="weryf()">
+        <p id="wynik"></p>
+    </div>
+    <script>
+        //let niem = ["die Hausverwaltung", "fehlen", "Die Natur fehlt mir", "der Schlüsselanhänger", "der Brunch", "finanziell unabhängig sein", "komplett möbliert", "das Chaos", "die Unizeit", "Hat das nie ein Ende?", "die Miete", "sorgen für", "die Entscheidung", "bis", "das Studentenwohnheim", "der Hausmeister", "die Haustür", "das Bad teilen", "Lärm machen", "Wir sind ganz schön gespannt", "die Einzimmerwohnung", "irgendwann", "sich streiten", ];
+        let slowa = [
+    { niemiecki: "administracja budynku", polski: "die Hausverwaltung" },
+    { niemiecki: "brakować", polski: "fehlen" },
+    { niemiecki: "Brakuje mi przyrody", polski: "Die Natur fehlt mir" },
+    { niemiecki: "brelok do kluczy", polski: "der Schlüsselanhänger" },
+    { niemiecki: "brunch", polski: "der Brunch" },
+    { niemiecki: "być finansowo niezależnym (od rodziców)", polski: "(von den Eltern) finanziell unabhängig sein" },
+    { niemiecki: "całkowicie umeblowane", polski: "komplett möbliert" },
+    { niemiecki: "chaos", polski: "das Chaos" },
+    { niemiecki: "czas studiów na uniwersytecie", polski: "die Unizeit" },
+    { niemiecki: "Czy to się nigdy nie skończy?", polski: "Hat das nie ein Ende?" },
+    { niemiecki: "czynsz", polski: "die Miete" },
+    { niemiecki: "dbać o", polski: "sorgen für" },
+    { niemiecki: "decyzja", polski: "die Entscheidung" },
+    { niemiecki: "do momentu aż", polski: "bis" },
+    { niemiecki: "dom studencki", polski: "das Studentenwohnheim" },
+    { niemiecki: "dozorca", polski: "der Hausmeister" },
+    { niemiecki: "drzwi wejściowe", polski: "die Haustür" },
+    { niemiecki: "dzielić łazienkę", polski: "das Bad teilen" },
+    { niemiecki: "hałasować", polski: "Lärm machen" },
+    { niemiecki: "Jesteśmy naprawdę bardzo ciekawi", polski: "Wir sind ganz schön gespannt" },
+    { niemiecki: "kawalerka", polski: "die Einzimmerwohnung" },
+    { niemiecki: "kiedyś", polski: "irgendwann" },
+    { niemiecki: "kłócić się", polski: "sich streiten" },
+    { niemiecki: "kłótnia", polski: "der Streit" },
+    { niemiecki: "korytarz", polski: "der Flur" },
+    { niemiecki: "koszty dodatkowe", polski: "die Nebenkosten" },
+    { niemiecki: "materac", polski: "die Matratze" },
+    { niemiecki: "Miałem całkiem sporo szczęścia", polski: "Ich hatte ganz schön Glück" },
+    { niemiecki: "mieć radość z", polski: "Spaß haben bei" },
+    { niemiecki: "na najwyższym piętrze", polski: "im obersten Stock" },
+    { niemiecki: "naczynia", polski: "das Geschirr" },
+    { niemiecki: "nieposortowany", polski: "ungetrennt" },
+    { niemiecki: "niezależny", polski: "unabhängig" },
+    { niemiecki: "odwracać wzrok", polski: "weg schauen" },
+    { niemiecki: "oglądanie", polski: "die Besichtigung" },
+    { niemiecki: "ogólnie", polski: "insgesamt" },
+    { niemiecki: "Ogólnie jestem bardzo zadowolony", polski: "Insgesamt bin ich sehr zufrieden" },
+    { niemiecki: "ograniczony", polski: "begrenzt" },
+    { niemiecki: "okazja", polski: "der Anlass" },
+    { niemiecki: "okres", polski: "der Zeitraum" },
+    { niemiecki: "osoba wynajmująca", polski: "der Vermieter" },
+    { niemiecki: "ostrzegać zawczasu", polski: "vor warnen" },
+    { niemiecki: "paleta drewniana", polski: "die Holzpalette" },
+    { niemiecki: "płacić czynsz", polski: "die Miete bezahlen" },
+    { niemiecki: "po zakończeniu szkoły", polski: "nach dem Schulabschluss" },
+    { niemiecki: "podarować", polski: "verschenken" },
+    { niemiecki: "podczas", polski: "während" },
+    { niemiecki: "podczas studiów", polski: "während der Studienzeit" },
+    { niemiecki: "podejmować decyzje", polski: "Entscheidungen treffen" },
+    { niemiecki: "pojemnik na śmieci", polski: "die Tonne" },
+    { niemiecki: "położenie", polski: "die Lage" },
+    { niemiecki: "pomieszczenie na rowery", polski: "der Fahrradkeller" },
+    { niemiecki: "pomoc", polski: "die Unterstützung" },
+    { niemiecki: "portal do rezerwacji", polski: "das Buchungsportal" },
+    { niemiecki: "powitanie", polski: "die Begrüßung" },
+    { niemiecki: "prace domowe", polski: "der Haushalt" },
+    { niemiecki: "przedsięwziąć", polski: "unternehmen" },
+    { niemiecki: "razem", polski: "insgesamt" },
+    { niemiecki: "roślina pokojowa", polski: "die Zimmerpflanze" },
+    { niemiecki: "sam", polski: "selbst" },
+    { niemiecki: "samodzielny", polski: "selbstständig" },
+    { niemiecki: "sąsiad", polski: "der Nachbar" },
+    { niemiecki: "sortować śmieci", polski: "den Müll trennen" },
+    { niemiecki: "spuszczać wzrok", polski: "auf den Boden schauen" },
+    { niemiecki: "sztućce", polski: "das Besteck" },
+    { niemiecki: "umierać z głodu", polski: "verhungern" },
+    { niemiecki: "w razie potrzeby", polski: "im Notfall" },
+    { niemiecki: "wiadomość", polski: "die Mitteilung" },
+    { niemiecki: "widok", polski: "der Blick" },
+    { niemiecki: "widok z balkonu", polski: "der Blick vom Balkon" },
+    { niemiecki: "wieczór filmowy", polski: "der Filmabend" },
+    { niemiecki: "wieżowiec", polski: "das Hochhaus" },
+    { niemiecki: "witać się", polski: "sich grüßen" },
+    { niemiecki: "wręczanie prezentów", polski: "die Geschenkübergabe" },
+    { niemiecki: "wrzucać", polski: "schmeißen" },
+    { niemiecki: "współlokator", polski: "der Mitbewohner" },
+    { niemiecki: "wstawiać", polski: "rein stellen" },
+    { niemiecki: "wycieraczka", polski: "die Fußmatte" },
+    { niemiecki: "wynajem", polski: "die Vermietung" },
+    { niemiecki: "wynajmować", polski: "vermieten" },
+    { niemiecki: "wynajmować przez portale", polski: "über Portale vermieten" },
+    { niemiecki: "wyobrażać sobie", polski: "sich vor stellen" },
+    { niemiecki: "wyprowadzać się z domu", polski: "von zu Hause aus ziehen" },
+    { niemiecki: "z jakiej okazji", polski: "aus welchem Anlass" },
+    { niemiecki: "z powodu", polski: "wegen" },
+    { niemiecki: "z powodu kosztów", polski: "wegen der Kosten" },
+    { niemiecki: "załatwić potrzebę (o psie)", polski: "das Geschäft erledigen" },
+    { niemiecki: "zamawianie pizzy", polski: "die Pizzabestellung" },
+    { niemiecki: "zamknięty", polski: "geschlossen" },
+    { niemiecki: "Zauważyłem", polski: "Mir ist das aufgefallen" },
+    { niemiecki: "Zawsze coś się dzieje", polski: "Immer ist etwas los" },
+    { niemiecki: "zwracać uwagę na", polski: "hin weisen auf" }
+];
+
+        let ile = 0;
+
+        const weryf = () =>{
+            let pol = document.getElementById("po_polsku");
+            let niem = document.getElementById("niem");
+            let w = document.getElementById("wynik");
+            if(slowa[pol.value].polski == niem.value){
+                w.innerHTML = "BRAWO!!!";
+            }else{
+                w.innerHTML = "Nie, prawdziwe to: "+slowa[pol.value].polski;
+                console.log(slowa[pol.value].polski+" == "+ niem.value);
+            }
+        }
+
+        const losa = () =>{
+            let pol = document.getElementById("po_polsku");
+            let los = Math.round(Math.random()*91);
+            pol.value = los;
+            if(slowa[los].niemiecki != ""){
+                ile++;
+                pol.innerHTML = slowa[los].niemiecki;
+                slowa[los].niemiecki = "";
+            }else if(ile<92){
+                losa();
+            }
+        }
+    </script>
+</body>
+</html>
