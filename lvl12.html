@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niemiecki</title>
+</head>
+<body onload="losa()">
+    <div id="powtorka">
+        <p id="po_polsku"></p><br>
+        <input type="text" id="niem"><br>
+        <input type="button" value="Los" onclick="losa()"><input type="submit" value="Odpowiedz" onclick="weryf()">
+        <p id="wynik"></p>
+    </div>
+    <script>
+        //let niem = ["die Hausverwaltung", "fehlen", "Die Natur fehlt mir", "der Schlüsselanhänger", "der Brunch", "finanziell unabhängig sein", "komplett möbliert", "das Chaos", "die Unizeit", "Hat das nie ein Ende?", "die Miete", "sorgen für", "die Entscheidung", "bis", "das Studentenwohnheim", "der Hausmeister", "die Haustür", "das Bad teilen", "Lärm machen", "Wir sind ganz schön gespannt", "die Einzimmerwohnung", "irgendwann", "sich streiten", ];
+        let slowa = [
+            { niemiecki: "administracja budynku", polski: "die Hausverwaltung" },
+            { niemiecki: "brakować", polski: "fehlen" },
+            { niemiecki: "brunch", polski: "der Brunch" },
+            { niemiecki: "chaos", polski: "das Chaos" },
+            { niemiecki: "czas studiów na uniwersytecie", polski: "die Unizeit" },
+            { niemiecki: "czynsz", polski: "die Miete" },
+            { niemiecki: "do momentu aż", polski: "bis" },
+            { niemiecki: "drzwi wejściowe", polski: "die Haustür" },
+            { niemiecki: "kiedyś", polski: "irgendwann" },
+            { niemiecki: "kłótnia", polski: "der Streit" },
+            { niemiecki: "korytarz", polski: "der Flur" },
+            { niemiecki: "koszty dodatkowe", polski: "die Nebenkosten" },
+            { niemiecki: "materac", polski: "die Matratze" },
+            { niemiecki: "naczynia", polski: "das Geschirr" },
+            { niemiecki: "nieposortowany", polski: "ungetrennt" },
+            { niemiecki: "niezależny", polski: "unabhängig" },
+            { niemiecki: "dozorca", polski: "der Hausmeister" },
+            { niemiecki: "zwiedzanie", polski: "die Besichtigung" },
+            { niemiecki: "ogólnie", polski: "insgesamt" },
+            { niemiecki: "ograniczony", polski: "begrenzt" },
+            { niemiecki: "okazja", polski: "der Anlass" },
+            { niemiecki: "okres", polski: "der Zeitraum" },
+            { niemiecki: "podarować", polski: "verschenken" },
+            { niemiecki: "podczas", polski: "während" },
+            { niemiecki: "pojemnik na śmieci", polski: "die Tonne" },
+            { niemiecki: "położenie", polski: "die Lage" },
+            { niemiecki: "pomieszczenie na rowery", polski: "der Fahrradkeller" },
+            { niemiecki: "pomoc", polski: "die Unterstützung" },
+            { niemiecki: "portal do rezerwacji", polski: "das Buchungsportal" },
+            { niemiecki: "powitanie", polski: "die Begrüßung" },
+            { niemiecki: "prace domowe", polski: "der Haushalt" },
+            { niemiecki: "przedsięwziąć", polski: "unternehmen" },
+            { niemiecki: "razem", polski: "insgesamt" },
+            { niemiecki: "roślina pokojowa", polski: "die Zimmerpflanze" },
+            { niemiecki: "sam", polski: "selbst" },
+            { niemiecki: "samodzielny", polski: "selbstständig" },
+            { niemiecki: "sąsiad", polski: "der Nachbar" },
+            { niemiecki: "sztućce", polski: "das Besteck" },
+            { niemiecki: "umierać z głodu", polski: "verhungern" },
+            { niemiecki: "w razie potrzeby", polski: "im Notfall" },
+            { niemiecki: "wiadomość", polski: "die Mitteilung" },
+            { niemiecki: "widok", polski: "der Blick" },
+            { niemiecki: "wieżowiec", polski: "das Hochhaus" },
+            { niemiecki: "wręczanie prezentów", polski: "die Geschenkübergabe" },
+            { niemiecki: "wrzucać", polski: "schmeißen" },
+            { niemiecki: "współlokator", polski: "der Mitbewohner" },
+            { niemiecki: "wycieraczka", polski: "die Fußmatte" },
+            { niemiecki: "wynajem", polski: "die Vermietung" },
+            { niemiecki: "wynajmować", polski: "vermieten" },
+            { niemiecki: "z powodu", polski: "wegen" },
+            { niemiecki: "zamawianie pizzy", polski: "die Pizzabestellung" },
+            { niemiecki: "zamknięty", polski: "geschlossen" },
+            { niemiecki: "brelok do kluczy", polski: "der Schlüsselanhänger" },
+            { niemiecki: "całkowicie umeblowane", polski: "komplett möbliert" },
+            { niemiecki: "dbać o", polski: "sorgen für" },
+            { niemiecki: "decyzja", polski: "die Entscheidung" },
+            { niemiecki: "dom studencki", polski: "das Studentenwohnheim" },
+            { niemiecki: "hałasować", polski: "Lärm machen" },
+            { niemiecki: "kawalerka", polski: "die Einzimmerwohnung" },
+            { niemiecki: "kłócić się", polski: "sich streiten" },
+            { niemiecki: "odwracać wzrok", polski: "weg schauen" },
+            { niemiecki: "osoba wynajmująca", polski: "der Vermieter" },
+            { niemiecki: "ostrzegać zawczasu", polski: "vor warnen" },
+            { niemiecki: "paleta drewniana", polski: "die Holzpalette" },
+            { niemiecki: "podejmować decyzje", polski: "Entscheidungen treffen" },
+            { niemiecki: "wieczór filmowy", polski: "der Filmabend" },
+            { niemiecki: "witać się", polski: "sich grüßen" },
+            { niemiecki: "wstawiać", polski: "rein stellen" }
+        ];
+
+        let ile = 0;
+
+        const weryf = () =>{
+            let pol = document.getElementById("po_polsku");
+            let niem = document.getElementById("niem");
+            let w = document.getElementById("wynik");
+            let slowo = niem.value[0].toLowerCase();
+            for(let i=1; i<niem.value.length; i++){
+                slowo+=niem.value[i];
+            }
+            if(slowa[pol.value].polski == slowo){
+                w.innerHTML = "BRAWO!!!";
+            }else{
+                w.innerHTML = "Nie, prawdziwe to: "+slowa[pol.value].polski;
+                console.log(slowa[pol.value].polski+" == "+ slowo);
+            }
+        }
+
+        const losa = () =>{
+            let pol = document.getElementById("po_polsku");
+            let los = Math.round(Math.random()*(slowa.length-1));
+            pol.value = los;
+            if(slowa[los].niemiecki != ""){
+                ile++;
+                pol.innerHTML = slowa[los].niemiecki;
+                slowa[los].niemiecki = "";
+            }else if(ile<slowa.length){
+                losa();
+            }
+        }
+    </script>
+</body>
+</html>
