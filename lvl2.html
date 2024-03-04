@@ -34,31 +34,38 @@
 ];
 
         let ile = 0;
+        let za_pierw = true;
 
         const weryf = () =>{
             let pol = document.getElementById("po_polsku");
             let niem = document.getElementById("niem");
             let w = document.getElementById("wynik");
             let slowo = niem.value[0].toLowerCase();
+            
             for(let i=1; i<niem.value.length; i++){
                 slowo+=niem.value[i];
             }
             if(slowa[pol.value].polski == slowo){
                 w.innerHTML = "BRAWO!!!";
+                if(za_pierw){
+                    slowa.splice(pol.value, 1);
+                    losa();
+                }
             }else{
+                za_pierw = false;
                 w.innerHTML = "Nie, prawdziwe to: "+slowa[pol.value].polski;
                 console.log(slowa[pol.value].polski+" == "+ slowo);
             }
         }
 
         const losa = () =>{
+            za_pierw = true;
             let pol = document.getElementById("po_polsku");
             let los = Math.round(Math.random()*(slowa.length-1));
             pol.value = los;
             if(slowa[los].niemiecki != ""){
                 ile++;
                 pol.innerHTML = slowa[los].niemiecki;
-                slowa[los].niemiecki = "";
             }else if(ile<slowa.length){
                 losa();
             }
