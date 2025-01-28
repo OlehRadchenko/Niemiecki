@@ -1,1 +1,103 @@
-a
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niemiecki</title>
+</head>
+<body onload="losa()">
+    <div id="powtorka">
+        <p id="po_polsku"></p><br>
+        <input type="text" id="niem"><br>
+        <input type="button" value="Los" onclick="losa()"><input type="submit" value="Odpowiedz" onclick="weryf()">
+        <p id="wynik"></p>
+    </div>
+    <p>Lista znaków do skopiowania: ü ä ß</p>
+    <script>
+        //let niem = ["die Hausverwaltung", "fehlen", "Die Natur fehlt mir", "der Schlüsselanhänger", "der Brunch", "finanziell unabhängig sein", "komplett möbliert", "das Chaos", "die Unizeit", "Hat das nie ein Ende?", "die Miete", "sorgen für", "die Entscheidung", "bis", "das Studentenwohnheim", "der Hausmeister", "die Haustür", "das Bad teilen", "Lärm machen", "Wir sind ganz schön gespannt", "die Einzimmerwohnung", "irgendwann", "sich streiten", ];
+        
+let slowa = [
+    { niemiecki: "urząd", polski: "das Amt" },
+    { niemiecki: "sprawa", polski: "das Anliegen" },
+    { niemiecki: "aktualizowanie (danych)", polski: "die Anpassung" },
+    { niemiecki: "urząd pracy", polski: "die Arbeitsagentur" },
+    { niemiecki: "zasiłek dla bezrobotnych", polski: "das Arbeitslosengeld" },
+    { niemiecki: "stosunek pracy", polski: "das Arbeitsverhältnis" },
+    { niemiecki: "wystawianie (dokumentu)", polski: "die Ausstellung" },
+    { niemiecki: "doradztwo zawodowe", polski: "die Berufsberatung" },
+    { niemiecki: "centrum obsługi mieszkańców", polski: "das Bürgerbüro" },
+    { niemiecki: "dokumenty pojazdu", polski: "die Fahrzeugpapiere" },
+    { niemiecki: "podatek od posiadania psa", polski: "die Hundesteuer" },
+    { niemiecki: "zasiłek na dzieci", polski: "das Kindergeld" },
+    { niemiecki: "wniosek online", polski: "der Onlineantrag" },
+    { niemiecki: "przedłużenie", polski: "die Verlängerung" },
+    { niemiecki: "wymeldowywać (się)", polski: "sich ab melden" },
+    { niemiecki: "składać zapytanie", polski: "an fragen" },
+    { niemiecki: "meldować (się)", polski: "sich an melden" },
+    { niemiecki: "wystawiać (dokument)", polski: "aus stellen" },
+    { niemiecki: "składać podanie", polski: "beantragen" },
+    { niemiecki: "doradzać", polski: "beraten" },
+    { niemiecki: "załatwiać", polski: "erledigen" },
+    { niemiecki: "przyjść osobiście", polski: "vorbei kommen" },
+    { niemiecki: "wymieniony (w formie listy)", polski: "aufgelistet" },
+    { niemiecki: "niezwłocznie", polski: "umgehend" },
+    { niemiecki: "odpowiedzialny za", polski: "zuständig für" },
+    { niemiecki: "pod tym linkiem", polski: "unter diesem Link" },
+    { niemiecki: "zameldowanie, zgłoszenie", polski: "die Anmeldung" },
+    { niemiecki: "pracodawca", polski: "der Arbeitgeber" },
+    { niemiecki: "urzędnik", polski: "der Beamte" },
+    { niemiecki: "biuro rzeczy znalezionych", polski: "das Fundbüro" },
+    { niemiecki: "kasa chorych", polski: "die Krankenkasse" },
+    { niemiecki: "utrata, zguba", polski: "der Verlust" },
+    { niemiecki: "ubezpieczenie", polski: "die Versicherung" },
+    { niemiecki: "zawierać (umowę)", polski: "ab schließen" },
+    { niemiecki: "wypełniać", polski: "aus füllen" },
+    { niemiecki: "potwierdzać", polski: "bestätigen" },
+    { niemiecki: "załatwiać", polski: "erledigen" },
+    { niemiecki: "zapytać, upewnić się", polski: "nach fragen" },
+    { niemiecki: "zastrzec, zablokować (dokument)", polski: "sperren" },
+    { niemiecki: "obejrzeć pobieżnie", polski: "überfliegen" },
+    { niemiecki: "ubezpieczać", polski: "versichern" },
+    { niemiecki: "(nie)ważny (dokument)", polski: "(un)gültig" },
+    { niemiecki: "zgłosić jako zagubiony", polski: "als verloren melden" }
+];
+        let ile = 0;
+        let za_pierw = true;
+
+        const weryf = () =>{
+            let pol = document.getElementById("po_polsku");
+            let niem = document.getElementById("niem");
+            let w = document.getElementById("wynik");
+            let slowo = niem.value[0].toLowerCase();
+            
+            for(let i=1; i<niem.value.length; i++){
+                slowo+=niem.value[i];
+            }
+            if(slowa[pol.value].polski == slowo){
+                w.innerHTML = "BRAWO!!!";
+                if(za_pierw){
+                    slowa.splice(pol.value, 1);
+                    losa();
+                }
+            }else{
+                za_pierw = false;
+                w.innerHTML = "Nie, prawdziwe to: "+slowa[pol.value].polski;
+                console.log(slowa[pol.value].polski+" == "+ slowo);
+            }
+        }
+
+        const losa = () =>{
+            za_pierw = true;
+            let pol = document.getElementById("po_polsku");
+            let los = Math.round(Math.random()*(slowa.length-1));
+            pol.value = los;
+            if(slowa[los].niemiecki != ""){
+                ile++;
+                pol.innerHTML = slowa[los].niemiecki;
+            }else if(ile<slowa.length){
+                losa();
+            }
+        }
+    </script>
+</body>
+</html>
