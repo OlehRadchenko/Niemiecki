@@ -69,11 +69,13 @@ let slowa = [
             let niem = document.getElementById("niem");
             let w = document.getElementById("wynik");
             let slowo = niem.value[0].toLowerCase();
+            let slowo2 = niem.value[0].toUpperCase();
             
             for(let i=1; i<niem.value.length; i++){
                 slowo+=niem.value[i];
+                slowo2+=niem.value[i];
             }
-            if(slowa[pol.value].niemiecki == slowo){
+            if(slowa[pol.value].niemiecki == slowo || slowa[pol.value].niemiecki == slowo2){
                 w.innerHTML = "BRAWO!!!";
                 if(za_pierw){
                     slowa.splice(pol.value, 1);
