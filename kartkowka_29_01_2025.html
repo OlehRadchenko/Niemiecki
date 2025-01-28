@@ -9,7 +9,7 @@
     <div id="powtorka">
         <p id="po_polsku"></p><br>
         <input type="text" id="niem"><br>
-        <input type="button" value="Los" onclick="losa()"><input type="submit" value="Odpowiedz" onclick="weryf()">
+        <input type="button" value="Los" onclick="losa()"><input type="submit" value="Odpowiedz" onclick="weryf()"><input type="submit" value="Łatwe" onclick="latwe()"><input type="submit" value="Średnie" onclick="srednie()"><input type="submit" value="Trudne" onclick="trudne()">
         <p id="wynik"></p>
     </div>
     <p>Lista znaków do skopiowania: ü ä ß</p>
@@ -100,6 +100,63 @@ let slowa = [
                 losa();
             }
         }
+
+        const latwe = () =>{
+            let slowa = [
+                { niemiecki: "der Betrüger", polski: "oszust" },
+                { niemiecki: "das Botnetz", polski: "botnet" },
+                { niemiecki: "die Gefahr", polski: "niebezpieczeństwo" },
+                { niemiecki: "der Hacker", polski: "haker" },
+                { niemiecki: "der Identitätsdiebstahl", polski: "kradzież tożsamości" },
+                { niemiecki: "der Mailanhang", polski: "załącznik w mailu" },
+                { niemiecki: "das Schadprogramm", polski: "złośliwe oprogramowanie" },
+                { niemiecki: "die Spammail", polski: "spam" },
+                { niemiecki: "der Virus", polski: "wirus komputerowy" },
+                { niemiecki: "der Zugang", polski: "dostęp" },
+                { niemiecki: "der Buchdruck", polski: "druk" },
+                { niemiecki: "der E-Book-Nutzer", polski: "użytkownik e-booka" },
+                { niemiecki: "die Schrift", polski: "pismo" },
+                { niemiecki: "gespeichert", polski: "zapisane" },
+                { niemiecki: "riesig", polski: "ogromny" },
+                { niemiecki: "erfinden", polski: "wynaleźć" },
+                { niemiecki: "festhalten", polski: "utrwalać" },
+                { niemiecki: "zuhören", polski: "słuchać" }
+            ];
+        }
+        const srednie = () =>{
+            let slowa = [
+                { niemiecki: "schädlich", polski: "szkodliwy" },
+                { niemiecki: "vorsichtig", polski: "ostrożny" },
+                { niemiecki: "bezeichnen", polski: "określać" },
+                { niemiecki: "führen zu", polski: "prowadzić do" },
+                { niemiecki: "hinterlassen", polski: "zostawiać" },
+                { niemiecki: "infizieren", polski: "infekować" },
+                { niemiecki: "schützen vor", polski: "chronić przed" },
+                { niemiecki: "verraten", polski: "zdradzać, ujawniać" },
+                { niemiecki: "Botnetze aufbauen", polski: "budować botnety" },
+                { niemiecki: "Daten sammeln", polski: "zbierać dane" },
+                { niemiecki: "Links anklicken", polski: "klikać linki" },
+                { niemiecki: "auf jeden Link klicken", polski: "klikać każdy link" },
+                { niemiecki: "Spammails verschicken", polski: "rozsyłać spamy" },
+                { niemiecki: "umweltfreundlich", polski: "przyjazny dla środowiska" },
+                { niemiecki: "sich beschäftigen mit", polski: "zajmować się" },
+                { niemiecki: "durchblättern", polski: "wertować, kartkować" },
+                { niemiecki: "umsteigen auf", polski: "przestawiać się na" },
+                { niemiecki: "sich vorstellen", polski: "wyobrażać sobie" },
+                { niemiecki: "Bäume fällen", polski: "ścinać drzewa" },
+                { niemiecki: "zum Entspannen", polski: "dla odprężenia" }
+            ];
+        }
+        const trudne = () =>{
+            let slowa = [
+                { niemiecki: "sich ausgeben für", polski: "podawać się za" },
+                { niemiecki: "in öffentlichen Verkehrsmitteln", polski: "w publicznych środkach lokomocji" },
+                { niemiecki: "verloren gehen", polski: "zanikać, ginąć" },
+                { niemiecki: "Der Vorteil liegt auf der Hand", polski: "Zaleta jest widoczna." },
+                { niemiecki: "miteinander vernetzt sein", polski: "być połączonym w sieć" },
+                { niemiecki: "Das klingt altmodisch", polski: "To brzmi staromodnie." }
+            ];
+        }    
     </script>
 </body>
 </html>
