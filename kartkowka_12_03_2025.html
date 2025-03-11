@@ -1,1 +1,152 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niemiecki</title>
+</head>
+<body onload="losa()">
+    <div id="powtorka">
+        <p id="po_polsku"></p><br>
+        <input type="text" id="niem"><br>
+        <input type="button" value="Los" onclick="losa()"><input type="submit" value="Odpowiedz" onclick="weryf()"><input type="submit" value="Łatwe" onclick="latwe()"><input type="submit" value="Średnie" onclick="srednie()"><input type="submit" value="Trudne" onclick="trudne()">
+        <p id="wynik"></p>
+    </div>
+    <p>Lista znaków do skopiowania: ü ä ß ö</p>
+    <script> 
+let slowa = [
+    { niemiecki: "der Auszubildende", polski: "osoba ucząca się zawodu" },
+    { niemiecki: "die Berufsschule", polski: "szkoła zawodowa" },
+    { niemiecki: "die Berufswahl", polski: "wybór zawodu" },
+    { niemiecki: "der Schreiner", polski: "stolarz" },
+    { niemiecki: "sich beschäftigen mit", polski: "zajmować się" },
+    { niemiecki: "sich bewerben", polski: "ubiegać się o" },
+    { niemiecki: "sich vorstellen", polski: "wyobrażać sobie" },
+    { niemiecki: "vergleichen", polski: "porównywać" },
+    { niemiecki: "wechseln", polski: "zmieniać" },
+    { niemiecki: "dual", polski: "dwutorowy (kształcenie)" },
+    { niemiecki: "körperlich", polski: "fizycznie" },
+    { niemiecki: "die Ausbildung", polski: "kształcenie (w zawodzie, np. na stolarza)" },
+    { niemiecki: "in Ausbildung sein", polski: "być w trakcie kształcenia" },
+    { niemiecki: "das Studium abbrechen", polski: "przerywać studia" },
+    { niemiecki: "das Studium wählen", polski: "wybierać studia" },
+    { niemiecki: "den Studiengang wechseln", polski: "zmieniać kierunek studiów" },
+    { niemiecki: "eine Werkstatt aufmachen", polski: "otwierać warsztat" },
+    { niemiecki: "das Arbeitsklima", polski: "atmosfera pracy" },
+    { niemiecki: "die Berufsberatung", polski: "doradztwo zawodowe" },
+    { niemiecki: "die Entwicklungsmöglichkeit", polski: "możliwość rozwoju" },
+    { niemiecki: "die Erfahrung", polski: "doświadczenie" },
+    { niemiecki: "das Firmenimage", polski: "wizerunek firmy" },
+    { niemiecki: "das Interesse", polski: "zainteresowanie" },
+    { niemiecki: "die Karrieremöglichkeit", polski: "możliwość zrobienia kariery" },
+    { niemiecki: "die Studienrichtung", polski: "kierunek studiów" },
+    { niemiecki: "der Überblick", polski: "rozeznanie, przegląd" },
+    { niemiecki: "der Verdienst", polski: "zarobki" },
+    { niemiecki: "die Work-Life-Balance", polski: "równowaga między pracą a życiem osobistym" },
+    { niemiecki: "ausfüllen", polski: "wypełniać" },
+    { niemiecki: "passen zu", polski: "pasować do" },
+    { niemiecki: "überraschen", polski: "zaskakiwać" },
+    { niemiecki: "sich verhalten", polski: "zachowywać się" },
+    { niemiecki: "dankbar für", polski: "wdzięczny za" },
+    { niemiecki: "gespannt auf", polski: "zaciekawiony" },
+    { niemiecki: "interessiert an", polski: "zainteresowany" },
+    { niemiecki: "offen für", polski: "otwarty na" },
+    { niemiecki: "Interesse haben an", polski: "być zainteresowanym" },
+    { niemiecki: "Wert legen auf", polski: "przykładać wagę do" },
+    { niemiecki: "den Wunsch haben nach", polski: "życzyć sobie" }
+];
 
+        let ile = 0;
+        let za_pierw = true;
+
+        const weryf = () =>{
+            let pol = document.getElementById("po_polsku");
+            let niem = document.getElementById("niem");
+            let w = document.getElementById("wynik");
+            let slowo = niem.value[0].toLowerCase();
+            let slowo2 = niem.value[0].toUpperCase();
+            
+            for(let i=1; i<niem.value.length; i++){
+                slowo+=niem.value[i];
+                slowo2+=niem.value[i];
+            }
+            if(slowa[pol.value].niemiecki == slowo || slowa[pol.value].niemiecki == slowo2){
+                w.innerHTML = "BRAWO!!!";
+                if(za_pierw){
+                    slowa.splice(pol.value, 1);
+                    losa();
+                }
+            }else{
+                za_pierw = false;
+                w.innerHTML = "Nie, prawdziwe to: "+slowa[pol.value].niemiecki;
+                console.log(slowa[pol.value].niemiecki+" == "+ slowo);
+            }
+        }
+
+        const losa = () =>{
+            za_pierw = true;
+            let pol = document.getElementById("po_polsku");
+            let los = Math.round(Math.random()*(slowa.length-1));
+            pol.value = los;
+            if(slowa[los].polski != ""){
+                ile++;
+                pol.innerHTML = slowa[los].polski;
+            }else if(ile<slowa.length){
+                losa();
+            }
+        }
+
+        const latwe = () =>{
+            slowa = [
+                { niemiecki: "der Auszubildende", polski: "osoba ucząca się zawodu" },
+                { niemiecki: "die Berufsschule", polski: "szkoła zawodowa" },
+                { niemiecki: "die Berufswahl", polski: "wybór zawodu" },
+                { niemiecki: "der Schreiner", polski: "stolarz" },
+                { niemiecki: "vergleichen", polski: "porównywać" },
+                { niemiecki: "wechseln", polski: "zmieniać" },
+                { niemiecki: "dual", polski: "dwutorowy (kształcenie)" },
+                { niemiecki: "körperlich", polski: "fizycznie" },
+                { niemiecki: "die Ausbildung", polski: "kształcenie (w zawodzie, np. na stolarza)" },
+                { niemiecki: "das Arbeitsklima", polski: "atmosfera pracy" },
+                { niemiecki: "die Berufsberatung", polski: "doradztwo zawodowe" },
+                { niemiecki: "die Erfahrung", polski: "doświadczenie" },
+                { niemiecki: "das Firmenimage", polski: "wizerunek firmy" },
+                { niemiecki: "das Interesse", polski: "zainteresowanie" },
+                { niemiecki: "die Studienrichtung", polski: "kierunek studiów" },
+                { niemiecki: "der Überblick", polski: "rozeznanie, przegląd" },
+                { niemiecki: "der Verdienst", polski: "zarobki" },
+                { niemiecki: "ausfüllen", polski: "wypełniać" },
+                { niemiecki: "passen zu", polski: "pasować do" },
+                { niemiecki: "überraschen", polski: "zaskakiwać" },
+                { niemiecki: "offen für", polski: "otwarty na" }
+            ];
+        }
+        const srednie = () =>{
+            slowa = [
+                { niemiecki: "sich beschäftigen mit", polski: "zajmować się" },
+                { niemiecki: "sich bewerben", polski: "ubiegać się o" },
+                { niemiecki: "sich vorstellen", polski: "wyobrażać sobie" },
+                { niemiecki: "das Studium abbrechen", polski: "przerywać studia" },
+                { niemiecki: "das Studium wählen", polski: "wybierać studia" },
+                { niemiecki: "die Work-Life-Balance", polski: "równowaga między pracą a życiem osobistym" },
+                { niemiecki: "sich verhalten", polski: "zachowywać się" },
+                { niemiecki: "dankbar für", polski: "wdzięczny za" },
+                { niemiecki: "gespannt auf", polski: "zaciekawiony" },
+                { niemiecki: "interessiert an", polski: "zainteresowany" },
+                { niemiecki: "Interesse haben an", polski: "być zainteresowanym" },
+                { niemiecki: "Wert legen auf", polski: "przykładać wagę do" },
+                { niemiecki: "den Wunsch haben nach", polski: "życzyć sobie" }
+            ];
+        }
+        const trudne = () =>{
+            slowa = [
+                { niemiecki: "in Ausbildung sein", polski: "być w trakcie kształcenia" },
+                { niemiecki: "den Studiengang wechseln", polski: "zmieniać kierunek studiów" },
+                { niemiecki: "eine Werkstatt aufmachen", polski: "otwierać warsztat" },
+                { niemiecki: "die Entwicklungsmöglichkeit", polski: "możliwość rozwoju" },
+                { niemiecki: "die Karrieremöglichkeit", polski: "możliwość zrobienia kariery" }
+            ];
+        }    
+    </script>
+</body>
+</html>
